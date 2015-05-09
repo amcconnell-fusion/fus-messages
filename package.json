@@ -1,0 +1,26 @@
+{
+  "name": "fus-messages",
+  "version": "0.0.1",
+  "description": "Friendly wrapper for ngMessages 1.4+",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corinna000/fus-mesages.git"
+  },
+  "keywords": [
+    "angular",
+    "ngmessages"
+  ],
+  "author": "corinna000@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corinna000/fus-mesages/issues"
+  },
+  "homepage": "https://github.com/corinna000/fus-mesages",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
