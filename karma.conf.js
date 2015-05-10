@@ -1,7 +1,10 @@
 // Karma configuration
 // Generated on Sun May 10 2015 13:40:01 GMT-0400 (EDT)
 
-module.exports = function(config) {
+module.exports = function (config) {
+
+  var bower = 'bower_components/';
+
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,19 +18,21 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'bower_components/angular/angular.js',
+      'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'src/**/*.module.js',
       'src/**/*.js'
     ],
 
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: {},
 
 
     // test results reporter to use
