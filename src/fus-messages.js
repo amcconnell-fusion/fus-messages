@@ -11,12 +11,14 @@
       scope: true,
       transclude: true,
       link: function (scope, element, attrs, ctrls, transclude) {
+        var defaultMessageListener;
+
         scope.inputModel = scope.$eval(attrs['fusMessages']);
         scope.inputModelErrors = scope.$eval(attrs['fusMessages']).$error;
         scope.isVisible = false;
 
         scope.$watchCollection(showMessages, toggleVisible);
-        scope.$watch(defaultMessages, addDefaultMessages);
+        defaultMessageListener = scope.$watch(defaultMessages, addDefaultMessages);
 
         transclude(function (clone) {
           var directiveEl = element.find('div')[0];
@@ -36,6 +38,7 @@
           scope.isVisible = isVisible;
         }
 
+        // checks if `fusMessagesDefaults` is present
         function defaultMessages() {
           defaultMessages = ctrls[1] && ctrls[1].defaultMessages;
           if (!!defaultMessages) {
@@ -43,6 +46,8 @@
           }
         }
 
+        // adds default messages.
+        // TODO re-render default messages if the watcher updates
         function addDefaultMessages(defaultMessages) {
           if (!!defaultMessages) {
             var directiveEl = element.find('div')[0];
@@ -52,6 +57,8 @@
               angular.element(directiveEl).append(el);
               $compile(el)(scope);
             });
+            // stop watching for defaults
+            defaultMessageListener();
           }
         }
       }

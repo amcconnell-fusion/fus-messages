@@ -4,12 +4,11 @@
  */
 describe('Fusion Messages Directives', function () {
 
-
   beforeEach(module('fusionMessages'));
 
   describe('fus-messages', function () {
 
-    var getEl, fm, scope, $document;
+    var getEl, scope, $document;
 
     beforeEach(inject(function ($rootScope, $compile) {
 
@@ -43,6 +42,7 @@ describe('Fusion Messages Directives', function () {
     it('is hidden when there are no error', function () {
       var el = getEl();
       var fm = jqLite(el).find('div').find('div');
+
       expect(fm.hasClass('ng-hide')).toBe(true);
     });
 
@@ -51,6 +51,7 @@ describe('Fusion Messages Directives', function () {
       scope.$digest();
       var fm = jqLite(el).find('div').find('div');
       var required = fm.find('div');
+
       expect(angular.element(fm).hasClass('ng-hide')).toBe(true);
     });
 
@@ -58,8 +59,10 @@ describe('Fusion Messages Directives', function () {
       var el = getEl('<div ng-message="required">input is required</div>');
       var fm = jqLite(el).find('div').find('div');
       var required = fm.find('div');
+
       scope.fusForm.fusEmail.$setDirty();
       scope.$digest();
+
       expect(fm.hasClass('ng-hide')).toBe(false);
       expect(required.attr('ng-message')).toBeDefined();
       expect(required.text()).toEqual('input is required');
@@ -69,8 +72,10 @@ describe('Fusion Messages Directives', function () {
       var el = getEl('<div ng-message="required">input is required</div>');
       var fm = jqLite(el).find('div').find('div');
       var required = fm.find('div');
+
       scope.fusForm.$setSubmitted();
       scope.$digest();
+
       expect(fm.hasClass('ng-hide')).toBe(false);
       expect(required.attr('ng-message')).toBeDefined();
       expect(required.text()).toEqual('input is required');
@@ -85,9 +90,7 @@ describe('Fusion Messages Directives', function () {
     beforeEach(inject(function ($rootScope, $compile) {
 
       $document = angular.element(document);
-
       scope = $rootScope.$new();
-
       scope.defaults = {
         'required' : 'default required message',
         'email' : 'default email message'
@@ -115,6 +118,7 @@ describe('Fusion Messages Directives', function () {
       var el = getEl();
       var fm = jqLite(el).find('div').find('div');
       var messages = jqLite(fm).find('div')[0];
+
       expect(jqLite(messages).text()).toEqual('default required message');
     });
 
