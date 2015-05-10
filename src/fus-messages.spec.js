@@ -93,6 +93,8 @@ describe('Fusion Messages Directives', function () {
         'email' : 'default email message'
       };
 
+      scope.$digest();
+
       getEl = function (transcluded) {
 
         var el = angular.element(
@@ -110,14 +112,27 @@ describe('Fusion Messages Directives', function () {
     }));
 
     it('uses a custom configuration', function () {
-      var el = getEl('<div ng-message="required">input is required</div>');
+      var el = getEl();
       var fm = jqLite(el).find('div').find('div');
-      var messages = angular.element(fm).find('div')[0];
+      var messages = jqLite(fm).find('div')[0];
+      expect(jqLite(messages).text()).toEqual('default required message');
+    });
 
-      console.log('el', el);
+    it('prioritizes custom messages over defaults', function () {
+      var el = getEl('<div ng-message="required">custom message</div>');
+      var fm = jqLite(el).find('div').find('div');
+      var messages = jqLite(fm).find('div')[0];
 
-      expect(messages.text()).toEqual('default required message');
+      // field is required, display custom message
+      expect(jqLite(messages).text()).toEqual('custom message');
 
+      // satisfy the `required` validation, expect default email error
+      scope.fusForm.fusEmail.$setViewValue('invalidEmail');
+      scope.$digest();
+
+      // lookup messages value
+      messages = jqLite(fm).find('div')[0];
+      expect(jqLite(messages).text()).toEqual('default email message');
 
     });
 

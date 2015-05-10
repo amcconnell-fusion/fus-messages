@@ -4,10 +4,10 @@
 
   angular.module('fusionMessages').directive('fusMessages', fusMessages);
 
-  function fusMessages() {
+  function fusMessages($compile) { // TODO ngInject
     return {
       template: '<div ng-messages="inputModelErrors" ng-show="isVisible"></div>',
-      require: ['^form'],
+      require: ['^form', '?^fusMessagesDefaults'],
       scope: true,
       transclude: true,
       link: function (scope, element, attrs, ctrls, transclude) {
@@ -16,10 +16,13 @@
         scope.isVisible = false;
 
         scope.$watchCollection(showMessages, toggleVisible);
+        scope.$watch(defaultMessages, addDefaultMessages);
 
         transclude(function (clone) {
           var directiveEl = element.find('div')[0];
-          angular.element(directiveEl).append(clone);
+
+          // make sure these are ordered before default messages
+          angular.element(directiveEl).prepend(clone);
         });
 
         // Show ngMessages only when this input is dirty or when the
@@ -31,6 +34,25 @@
 
         function toggleVisible(isVisible) {
           scope.isVisible = isVisible;
+        }
+
+        function defaultMessages() {
+          defaultMessages = ctrls[1] && ctrls[1].defaultMessages;
+          if (!!defaultMessages) {
+            return defaultMessages;
+          }
+        }
+
+        function addDefaultMessages(defaultMessages) {
+          if (!!defaultMessages) {
+            var directiveEl = element.find('div')[0];
+
+            angular.forEach(defaultMessages, function (message, key) {
+              var el = angular.element('<div></div>').attr('ng-message', key).text(message);
+              angular.element(directiveEl).append(el);
+              $compile(el)(scope);
+            });
+          }
         }
       }
     }
