@@ -2,6 +2,8 @@
  'use strict';
 
   /**
+   * @ngdoc module
+   * @name fusionMessages
    * @description
    *
    * fusionMessages is a friendly wrapper for `ngMessages`. It is easier
