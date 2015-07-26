@@ -12,7 +12,7 @@ This directive address a few usability issues with `ngMessages`.
 ## Usage
 
 1. `bower install fusion-messages` (_coming soon!_)
-2. add `fusion-messages.jpg` script to your application
+2. add `fus-messages.js` script to your application
 3. add `fusionMessages` as a module dependency for your application
 
 ### Basic Usage
