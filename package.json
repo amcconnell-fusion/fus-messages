@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/corinna000/fus-mesages.git"
+    "url": "https://github.com/fusionalliance/fus-messages"
   },
   "keywords": [
     "angular",
@@ -17,9 +17,9 @@
   "author": "corinna000@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/corinna000/fus-mesages/issues"
+    "url": "https://github.com/fusionalliance/fus-mesages/issues"
   },
-  "homepage": "https://github.com/corinna000/fus-mesages",
+  "homepage": "https://github.com/fusionalliance/fus-mesages",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-clean": "^0.3.1",
