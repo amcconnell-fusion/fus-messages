@@ -1,7 +1,7 @@
 {
   "name": "fus-messages",
   "version": "0.0.2",
-  "homepage": "https://github.com/corinna000/fus-mesages",
+  "homepage": "https://github.com/fusionalliance/fus-messages",
   "authors": [
     "Corinna Cohn <ccohn@fusionalliance.com>"
   ],
@@ -21,9 +21,9 @@
   ],
   "devDependencies": {
     "angular": "^1.4.0",
-    "angular-mocks": "1.4.0-rc.1"
+    "angular-mocks": "^1.4.0"
   },
   "dependencies": {
-    "angular-messages": "1.4.0-rc.1"
+    "angular-messages": "^1.4.0"
   }
 }
