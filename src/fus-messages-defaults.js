@@ -6,7 +6,8 @@
   function fusMessagesDefaults () {
     return {
       restrict: 'A',
-      controller: function ($scope, $attrs) { // TODO ngInject
+      /** @ngInject */
+      controller: function ($scope, $attrs) {
         this.defaultMessages = $scope.$eval($attrs['fusMessagesDefaults']);
       }
     }

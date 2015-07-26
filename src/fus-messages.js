@@ -4,7 +4,8 @@
 
   angular.module('fusionMessages').directive('fusMessages', fusMessages);
 
-  function fusMessages($compile) { // TODO ngInject
+  /** @ngInject */
+  function fusMessages($compile) {
     return {
       template: '<div ng-messages="inputModelErrors" ng-show="isVisible"></div>',
       require: ['^form', '?^fusMessagesDefaults'],
